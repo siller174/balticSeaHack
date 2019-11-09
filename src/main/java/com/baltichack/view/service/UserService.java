@@ -5,14 +5,22 @@ import com.baltichack.view.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.validation.constraints.Max;
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class UserService {
+    public static final boolean flag = true;
 
+    public static List<User> list = new ArrayList<>();
     @Autowired
     private UserRepo UserRepo;
 
     public void addUser(User User) {
-//        UserRepo.save(User);
+        if (flag)
+            UserRepo.save(User);
+
     }
 
     public Iterable<User> listUser() {
@@ -20,6 +28,7 @@ public class UserService {
     }
 
     public void removeUser(Long id) {
-//        UserRepo.deleteById(id);
+        if(flag)
+            UserRepo.deleteById(id);
     }
 }
