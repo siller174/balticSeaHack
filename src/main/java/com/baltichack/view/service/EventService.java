@@ -24,6 +24,15 @@ public class EventService {
         list.add(new Event(3, "Alex", "/api/event/3"));
     }
 
+    public Event findById(Long id) {
+        if (flag) {
+            for (Event event : list) {
+                if (id == (long) event.getId())
+                    return event;
+            }
+        }
+        return null;
+    }
 
 //    @Autowired
 //    private EventRepo eventRepo;
