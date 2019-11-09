@@ -18,7 +18,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.util.List;
+import java.util.Collection;
 
 @Slf4j
 @RestController
@@ -35,7 +35,7 @@ public class EventController {
 
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public List<Event> listEvents() {
+    public Collection<Event> listEvents() {
         return eventRepo.listEvent();
     }
 

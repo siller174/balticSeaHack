@@ -4,45 +4,45 @@ import com.baltichack.view.entity.User;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class UserService {
     public static final boolean flag = true;
-
-    private List<User> list = new ArrayList<>();
+    @SuppressWarnings("unchecked")
+    private Map<Long, User> map = new ConcurrentHashMap();
 
     @PostConstruct
     public void init() {
-        list.add(new User((long)1, "Alex", "test@email.ri", "phone", "city", "data"));
-        list.add(new User((long)2, "Vasya", "tes1t@email.ri", "phone", "city", "data"));
-        list.add(new User((long)3, "Egor", "tes2t@email.ri", "phone", "city", "data"));
+        map.put(1L, new User((long)1, "Alex", "test@email.ri", "phone", "city", "data"));
+        map.put(2L, new User((long)2, "Vasya", "tes1t@email.ri", "phone", "city", "data"));
+        map.put(3L, new User((long)3, "Egor", "tes2t@email.ri", "phone", "city", "data"));
     }
 
 
 //    @Autowired
 //    private UserRepo UserRepo;
 
-    public void addUser(User User) {
+    public void addUser(User user) {
         if (flag) {
-            list.add(User);
+            if (!map.containsKey(user.getId())) {
+                map.put(user.getId(), user);
+            }
         }
 //            UserRepo.save(User);
 
     }
 
     public Iterable<User> listUser() {
-        return list;
+        return map.values();
 //        return UserRepo.findAll();
     }
 
     public void removeUser(Long id) {
         if(flag) {
-            for (User user : list) {
-                if (id == user.getId())
-                    list.remove(user);
-            }
+                map.remove(id);
         }
 
 //            UserRepo.deleteById(id);

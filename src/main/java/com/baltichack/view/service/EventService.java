@@ -4,8 +4,9 @@ import com.baltichack.view.entity.Event;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import static com.baltichack.view.service.UserService.flag;
 
@@ -14,21 +15,20 @@ import static com.baltichack.view.service.UserService.flag;
 
 @Service
 public class EventService {
-
-    private List<Event> list = new ArrayList<>();
+    @SuppressWarnings("unchecked")
+    private Map<Long, Event> map = new ConcurrentHashMap();
 
     @PostConstruct
     public void init() {
-        list.add(new Event((long) 1, "Event1", "http://www.yahoo.com", new String[]{"red", "blue"}));
-        list.add(new Event((long) 2, "Event2", "http://www.ya.ru", new String[]{"yellow", "green"}));
-        list.add(new Event((long) 3, "Event3", "http://www.google.ru", new String[]{"black", "white"}));
+        map.put((long) 1, new Event((long) 1, "Event1", "http://www.yahoo.com", new String[]{"red", "blue"}));
+        map.put((long) 2, new Event((long) 2, "Event2", "http://www.ya.ru", new String[]{"black", "white"}));
+        map.put((long) 3, new Event((long) 3, "Event3", "http://www.google.ru", new String[]{"red", "yelllow"}));
     }
 
     public Event findById(Long id) {
         if (flag) {
-            for (Event event : list) {
-                if (id == (long) event.getId())
-                    return event;
+            if (map.containsKey(id)) {
+                return map.get(id);
             }
         }
         return null;
@@ -39,22 +39,21 @@ public class EventService {
 
     public void addEvent(Event event) {
         if (flag) {
-            list.add(event);
+            if (!map.containsKey(event.getId())) {
+                map.put(event.getId(), event);
+            }
         }
 //        eventRepo.save(event);
     }
 
-    public List<Event> listEvent() {
-        return list;
+    public Collection<Event> listEvent() {
+        return map.values();
 //        return eventRepo.findAll();
     }
 
     public void removeEvent(Long id) {
         if (flag) {
-            for (Event event : list) {
-                if (id == (long) event.getId())
-                    list.remove(event);
-            }
+            map.remove(id);
         }
 //        eventRepo.deleteById(id);
     }
