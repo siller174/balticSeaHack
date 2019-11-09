@@ -11,7 +11,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Service
 public class UserService {
     public static final boolean flag = true;
-
+    @SuppressWarnings("unchecked")
     private Map<Long, User> map = new ConcurrentHashMap();
 
     @PostConstruct
