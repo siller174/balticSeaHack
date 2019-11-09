@@ -1,13 +1,21 @@
 package com.baltichack.view.service;
 
+import com.baltichack.view.entity.Event;
 import com.baltichack.view.entity.User;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class EventStatsService {
-    public void checkInUser(User user) {
 
+    private Map<String, User> stats = new ConcurrentHashMap();
+
+
+    public void checkInUser(String eventId, User user) {
+        if (!stats.containsKey(eventId)) {
+            stats.put(eventId, user);
+        }
     }
 }

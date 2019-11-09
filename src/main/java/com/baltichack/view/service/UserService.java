@@ -42,7 +42,7 @@ public class UserService {
     public void removeUser(Long id) {
         if(flag) {
             for (User user : list) {
-                if (id == (long) user.getId())
+                if (id == user.getId())
                     list.remove(user);
             }
         }
