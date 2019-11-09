@@ -1,9 +1,6 @@
 package com.baltichack.view.service;
 
 import com.baltichack.view.entity.Event;
-//import com.baltichack.view.entity.User;
-//import com.baltichack.view.repos.EventRepo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -12,6 +9,9 @@ import java.util.List;
 
 import static com.baltichack.view.service.UserService.flag;
 
+//import com.baltichack.view.entity.User;
+//import com.baltichack.view.repos.EventRepo;
+
 @Service
 public class EventService {
 
@@ -19,9 +19,9 @@ public class EventService {
 
     @PostConstruct
     public void init() {
-        list.add(new Event((long) 1, "Event1", "/api/event/1"));
-        list.add(new Event((long) 2, "Event2", "/api/event/2"));
-        list.add(new Event((long) 3, "Event3", "/api/event/3"));
+        list.add(new Event((long) 1, "Event1", "/api/event/1", new String[]{"red", "blue"}));
+        list.add(new Event((long) 2, "Event2", "/api/event/2", new String[]{"yellow", "green"}));
+        list.add(new Event((long) 3, "Event3", "/api/event/3", new String[]{"black", "white"}));
     }
 
     public Event findById(Long id) {

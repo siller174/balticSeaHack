@@ -1,4 +1,4 @@
-//package com.baltichack.view.repos;
+package com.baltichack.view.repos;//package com.baltichack.view.repos;
 //
 //import com.baltichack.view.entity.Event;
 //import org.springframework.data.repository.CrudRepository;

@@ -29,4 +29,6 @@ public class Event {
 //    @Column(name = "REDIRECTURL")
     @ApiModelProperty("Redirect Url")
     private String redirectUrl;
+
+    private String[] colors;
 }
