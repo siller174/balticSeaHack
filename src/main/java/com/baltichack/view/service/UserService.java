@@ -18,8 +18,10 @@ public class UserService {
     private UserRepo UserRepo;
 
     public void addUser(User User) {
-        if (flag)
-            UserRepo.save(User);
+        if (flag) {
+            list.add(User);
+        }
+//            UserRepo.save(User);
 
     }
 
@@ -28,7 +30,16 @@ public class UserService {
     }
 
     public void removeUser(Long id) {
-        if(flag)
-            UserRepo.deleteById(id);
+        if(flag) {
+            for (User user : list) {
+                if (id == (long) user.getId())
+                    list.remove(user);
+            }
+        }
+
+//            UserRepo.deleteById(id);
     }
+
+
+
 }
