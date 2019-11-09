@@ -1,7 +1,6 @@
 package com.baltichack.view.service;
 
 import com.baltichack.view.entity.User;
-import com.baltichack.view.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,8 +23,8 @@ public class UserService {
     }
 
 
-    @Autowired
-    private UserRepo UserRepo;
+//    @Autowired
+//    private UserRepo UserRepo;
 
     public void addUser(User User) {
         if (flag) {
@@ -36,7 +35,8 @@ public class UserService {
     }
 
     public Iterable<User> listUser() {
-        return UserRepo.findAll();
+        return list;
+//        return UserRepo.findAll();
     }
 
     public void removeUser(Long id) {

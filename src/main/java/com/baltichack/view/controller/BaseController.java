@@ -7,12 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class BaseController {
 
     @RequestMapping("/")
-    public String hello() {
-        return "hello";
-    }
-
-
-    @RequestMapping("/")
     public String home() {
         return "redirect:/api/event/";
     }

@@ -1,7 +1,7 @@
 package com.baltichack.view.controller;
 
 import com.baltichack.view.entity.Event;
-import com.baltichack.view.repos.EventRepo;
+import com.baltichack.view.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,18 +12,18 @@ import java.util.Map;
 public class EventController {
 
     @Autowired
-    private EventRepo eventRepo;
+    private EventService eventRepo;
 
     @RequestMapping("/")
     public Iterable<Event> listEvents() {
 
-       return eventRepo.findAll();
+       return eventRepo.listEvent();
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addEvent(@RequestParam("Event") Event event) {
 
-        eventRepo.save(event);
+        eventRepo.addEvent(event);
 
         return "redirect:/";
     }
@@ -31,7 +31,7 @@ public class EventController {
     @RequestMapping("/delete/{EventId}")
     public String deleteEvent(@PathVariable("EventId") Long eventId) {
 
-        eventRepo.deleteById(eventId);
+        eventRepo.removeEvent(eventId);
         return "redirect:/";
     }
 

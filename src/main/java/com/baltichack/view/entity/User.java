@@ -7,23 +7,24 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
+//import javax.persistence.*;
 
-@Entity
+
+//@Entity
 @Getter
 @Setter
 @AllArgsConstructor
-@Table(name = "EVENTS")
+//@Table(name = "EVENTS")
 public class User {
-    @Id
-    @Column(name = "ID")
-    @GeneratedValue
+//    @Id
+//    @Column(name = "ID")
+//    @GeneratedValue
     private Integer id;
 
-    @Column(name = "NAME")
+//    @Column(name = "NAME")
     private String name;
 
-    @Column(name = "REDIRECTURL")
+//    @Column(name = "REDIRECTURL")
     private String redirectUrl;
 
 

@@ -1,8 +1,8 @@
 package com.baltichack.view.service;
 
 import com.baltichack.view.entity.Event;
-import com.baltichack.view.entity.User;
-import com.baltichack.view.repos.EventRepo;
+//import com.baltichack.view.entity.User;
+//import com.baltichack.view.repos.EventRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,8 +25,8 @@ public class EventService {
     }
 
 
-    @Autowired
-    private EventRepo eventRepo;
+//    @Autowired
+//    private EventRepo eventRepo;
 
     public void addEvent(Event event) {
         if (flag) {
@@ -36,11 +36,12 @@ public class EventService {
     }
 
     public Iterable<Event> listEvent() {
-        return eventRepo.findAll();
+        return list;
+//        return eventRepo.findAll();
     }
 
     public void removeEvent(Long id) {
-        if(flag) {
+        if (flag) {
             for (Event event : list) {
                 if (id == (long) event.getId())
                     list.remove(event);
