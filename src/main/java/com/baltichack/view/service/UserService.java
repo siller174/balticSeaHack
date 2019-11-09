@@ -1,11 +1,9 @@
 package com.baltichack.view.service;
 
 import com.baltichack.view.entity.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import javax.validation.constraints.Max;
 import java.util.ArrayList;
 import java.util.List;
 
