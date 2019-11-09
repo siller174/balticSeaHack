@@ -6,6 +6,7 @@ import com.baltichack.view.repos.EventRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +17,12 @@ public class EventService {
 
     private List<Event> list = new ArrayList<>();
 
-
+    @PostConstruct
+    public void init() {
+        list.add(new Event(1, "Alex", "/api/event/1"));
+        list.add(new Event(1, "Alex", "/api/event/2"));
+        list.add(new Event(1, "Alex", "/api/event/3"));
+    }
 
 
     @Autowired

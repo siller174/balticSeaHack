@@ -1,7 +1,10 @@
 package com.baltichack.view.entity;
 
 
+import jdk.nashorn.internal.objects.annotations.Constructor;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -9,6 +12,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
 @Table(name = "EVENTS")
 public class User {
     @Id
@@ -21,4 +25,6 @@ public class User {
 
     @Column(name = "REDIRECTURL")
     private String redirectUrl;
+
+
 }
