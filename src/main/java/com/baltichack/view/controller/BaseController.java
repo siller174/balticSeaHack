@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 public class BaseController {
 
     //redirect to external URL
-    @RequestMapping("/")
+    @RequestMapping(value = "/", method = RequestMethod.PUT)
     public RedirectView localRedirect() {
         RedirectView redirectView = new RedirectView();
         redirectView.setUrl("http://www.yahoo.com");

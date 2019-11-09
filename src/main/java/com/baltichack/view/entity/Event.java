@@ -1,6 +1,10 @@
 package com.baltichack.view.entity;
 
-import lombok.*;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 //import javax.persistence.*;
 
@@ -9,16 +13,20 @@ import lombok.*;
 @Getter
 @Setter
 @AllArgsConstructor
+@ApiModel
 //@Table(name = "EVENTS")
 public class Event {
 //    @Id
 //    @Column(name = "ID")
 //    @GeneratedValue
-    private Integer id;
+    @ApiModelProperty("Event Id")
+    private Long id;
 
 //    @Column(name = "NAME")
+    @ApiModelProperty("Event name")
     private String name;
 
 //    @Column(name = "REDIRECTURL")
+    @ApiModelProperty("Redirect Url")
     private String redirectUrl;
 }

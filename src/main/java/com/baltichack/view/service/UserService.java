@@ -17,9 +17,9 @@ public class UserService {
 
     @PostConstruct
     public void init() {
-        list.add(new User(1, "Alex", "/api/event/1"));
-        list.add(new User(2, "Alex", "/api/event/2"));
-        list.add(new User(3, "Alex", "/api/event/3"));
+        list.add(new User((long)1, "Alex", "test@email.ri", "phone", "city", "data"));
+        list.add(new User((long)2, "Vasya", "tes1t@email.ri", "phone", "city", "data"));
+        list.add(new User((long)3, "Egor", "tes2t@email.ri", "phone", "city", "data"));
     }
 
 

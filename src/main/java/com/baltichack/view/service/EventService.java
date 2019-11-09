@@ -19,9 +19,9 @@ public class EventService {
 
     @PostConstruct
     public void init() {
-        list.add(new Event(1, "Alex", "/api/event/1"));
-        list.add(new Event(2, "Alex", "/api/event/2"));
-        list.add(new Event(3, "Alex", "/api/event/3"));
+        list.add(new Event((long) 1, "Event1", "/api/event/1"));
+        list.add(new Event((long) 2, "Event2", "/api/event/2"));
+        list.add(new Event((long) 3, "Event3", "/api/event/3"));
     }
 
     public Event findById(Long id) {

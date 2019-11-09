@@ -1,10 +1,10 @@
 package com.baltichack.view.entity;
 
 
-import jdk.nashorn.internal.objects.annotations.Constructor;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 //import javax.persistence.*;
@@ -14,18 +14,32 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
+@ApiModel
 //@Table(name = "EVENTS")
 public class User {
-//    @Id
+
+    // Инфа: 1) ФИО, 2) номер телефона 3) емейл 4) город 5) дата рождения
+
+    //    @Id
 //    @Column(name = "ID")
 //    @GeneratedValue
-    private Integer id;
+    @ApiModelProperty
+    private Long id;
 
-//    @Column(name = "NAME")
+    //    @Column(name = "NAME")
+    @ApiModelProperty("Full name")
     private String name;
 
-//    @Column(name = "REDIRECTURL")
-    private String redirectUrl;
+    //    @Column(name = "EMAIL")
+    @ApiModelProperty
+    private String email;
 
+    @ApiModelProperty
+    private String phoneNumber;
 
+    @ApiModelProperty
+    private String city;
+
+    @ApiModelProperty("Date of birth")
+    private String data;
 }
