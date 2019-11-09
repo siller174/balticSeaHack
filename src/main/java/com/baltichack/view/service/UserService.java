@@ -35,8 +35,8 @@ public class UserService {
 
     }
 
-    public Iterable<Long> listUser() {
-        return map.keySet();
+    public Iterable<User> listUser() {
+        return map.values();
 //        return UserRepo.findAll();
     }
 

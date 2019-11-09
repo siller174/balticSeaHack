@@ -52,8 +52,8 @@ public class EventService {
 //        eventRepo.save(event);
     }
 
-    public Iterable<Long> listEvent() {
-        return map.keySet();
+    public Iterable<Event> listEvent() {
+        return map.values();
 //        return eventRepo.findAll();
     }
 
