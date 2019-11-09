@@ -4,7 +4,7 @@ import com.baltichack.view.entity.Event;
 import com.baltichack.view.entity.User;
 import com.baltichack.view.service.EventService;
 import com.baltichack.view.service.QRcodeService;
-import com.baltichack.view.utils.FileUtils;
+import com.baltichack.view.utils.MyFileUtils;
 import com.google.zxing.WriterException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
@@ -18,6 +18,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -34,21 +35,19 @@ public class EventController {
 
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public Iterable<Event> listEvents() {
+    public List<Event> listEvents() {
         return eventRepo.listEvent();
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST, consumes = "multipart/form-data")
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     public void addEvent(@RequestBody Event event) throws IOException {
         eventRepo.addEvent(event);
     }
 
     @RequestMapping(value = "/uploadLogo/{eventId}", method = RequestMethod.POST, consumes = "multipart/form-data")
     public void uploadLogoToEvent(@PathVariable("eventId") Long eventId, @RequestParam("file") MultipartFile file, HttpServletResponse response) throws IOException {
-        FileUtils.createDir("/eventLogo/logo"); // todo remove
         File resultFile = new File("/eventLogo/" + eventId, "logo");
-        if (!resultFile.exists())
-            resultFile.createNewFile(); //todo fix it
+        MyFileUtils.createFileWithDirs(resultFile);
         try (OutputStream fop = new FileOutputStream(resultFile)) {
             IOUtils.copy(file.getInputStream(), fop);
         }
@@ -77,8 +76,9 @@ public class EventController {
     @RequestMapping(value = "/getQRcode/{id}", method = RequestMethod.GET)
     public void getQRcode(@PathVariable("id") Long eventId, HttpServletResponse response) throws WriterException, IOException {
         Event event = eventRepo.findById(eventId);
-        InputStream inputStream = qRcodeService.getQRcode(eventId, event.getRedirectUrl()).getInputStream();
+        try (InputStream inputStream = qRcodeService.getQRcode(eventId, event.getRedirectUrl()).getInputStream()) {
+            IOUtils.copy(inputStream, response.getOutputStream());
+        }
         response.setContentType(MediaType.IMAGE_JPEG_VALUE);
-        IOUtils.copy(inputStream, response.getOutputStream());
     }
 }

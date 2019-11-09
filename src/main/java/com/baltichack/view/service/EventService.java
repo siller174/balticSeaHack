@@ -19,9 +19,9 @@ public class EventService {
 
     @PostConstruct
     public void init() {
-        list.add(new Event((long) 1, "Event1", "/api/event/1", new String[]{"red", "blue"}));
-        list.add(new Event((long) 2, "Event2", "/api/event/2", new String[]{"yellow", "green"}));
-        list.add(new Event((long) 3, "Event3", "/api/event/3", new String[]{"black", "white"}));
+        list.add(new Event((long) 1, "Event1", "http://www.yahoo.com", new String[]{"red", "blue"}));
+        list.add(new Event((long) 2, "Event2", "http://www.ya.ru", new String[]{"yellow", "green"}));
+        list.add(new Event((long) 3, "Event3", "http://www.google.ru", new String[]{"black", "white"}));
     }
 
     public Event findById(Long id) {
@@ -44,7 +44,7 @@ public class EventService {
 //        eventRepo.save(event);
     }
 
-    public Iterable<Event> listEvent() {
+    public List<Event> listEvent() {
         return list;
 //        return eventRepo.findAll();
     }
