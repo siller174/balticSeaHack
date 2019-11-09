@@ -5,6 +5,7 @@ import com.baltichack.view.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import javax.validation.constraints.Max;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,14 @@ import java.util.List;
 public class UserService {
     public static final boolean flag = true;
 
-    public static List<User> list = new ArrayList<>();
+    private List<User> list = new ArrayList<>();
+
+    @PostConstruct
+    public void init() {
+        list.add()
+    }
+
+
     @Autowired
     private UserRepo UserRepo;
 

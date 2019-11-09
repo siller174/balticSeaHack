@@ -14,7 +14,11 @@ import static com.baltichack.view.service.UserService.flag;
 @Service
 public class EventService {
 
-    public static List<Event> list = new ArrayList<>();
+    private List<Event> list = new ArrayList<>();
+
+
+
+
     @Autowired
     private EventRepo eventRepo;
 
