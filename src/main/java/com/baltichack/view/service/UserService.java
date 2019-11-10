@@ -1,53 +1,26 @@
 package com.baltichack.view.service;
 
 import com.baltichack.view.entity.User;
+import com.baltichack.view.repos.UserRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.PostConstruct;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class UserService {
-    public static final boolean flag = true;
-    @SuppressWarnings("unchecked")
-    private Map<Long, User> map = new ConcurrentHashMap();
 
-    @PostConstruct
-    public void init() {
-        map.put(1L, new User((long)1, "Alex", "test@email.ri", "phone", "city", "data"));
-        map.put(2L, new User((long)2, "Vasya", "tes1t@email.ri", "phone", "city", "data"));
-        map.put(3L, new User((long)3, "Egor", "tes2t@email.ri", "phone", "city", "data"));
-    }
-
-
-//    @Autowired
-//    private UserRepo UserRepo;
+    @Autowired
+    private UserRepo userRepo;
 
     public void addUser(User user) {
-        if (flag) {
-            if (!map.containsKey(user.getId())) {
-                map.put(user.getId(), user);
-            }
-        }
-//            UserRepo.save(User);
+        userRepo.save(user);
 
     }
 
     public Iterable<User> listUser() {
-        return map.values();
-//        return UserRepo.findAll();
+        return userRepo.findAll();
     }
 
     public void removeUser(Long id) {
-        if(flag) {
-                map.remove(id);
-        }
-
-//            UserRepo.deleteById(id);
+            userRepo.deleteById(id);
     }
-
-
-
 }
