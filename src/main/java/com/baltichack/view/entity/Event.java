@@ -5,30 +5,29 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Table;
+import org.springframework.data.annotation.Id;
 
-//import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
 
 
-//@Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @ApiModel
-//@Table(name = "EVENTS")
+@Table(appliesTo = "EVENT")
 public class Event {
-//    @Id
-//    @Column(name = "ID")
-//    @GeneratedValue
+    @Id
+    @Column(name = "ID")
+    @GeneratedValue
     @ApiModelProperty("Event Id")
     private Long id;
-
-//    @Column(name = "NAME")
+    @Column(name = "NAME")
     @ApiModelProperty("Event name")
     private String name;
-
-//    @Column(name = "REDIRECTURL")
+    @Column(name = "REDIRECTURL")
     @ApiModelProperty("Redirect Url")
     private String redirectUrl;
-
     private String[] colors;
 }

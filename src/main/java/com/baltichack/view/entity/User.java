@@ -6,31 +6,33 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Entity;
+import org.hibernate.annotations.Table;
+import org.springframework.data.annotation.Id;
 
-//import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
 
 
-//@Entity
+@Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @ApiModel
-//@Table(name = "EVENTS")
+@Table(appliesTo = "USERS")
 public class User {
 
-    // Инфа: 1) ФИО, 2) номер телефона 3) емейл 4) город 5) дата рождения
-
-    //    @Id
-//    @Column(name = "ID")
-//    @GeneratedValue
+    @Id
+    @Column(name = "ID")
+    @GeneratedValue
     @ApiModelProperty
     private Long id;
 
-    //    @Column(name = "NAME")
+    @Column(name = "NAME")
     @ApiModelProperty("Full name")
     private String name;
 
-    //    @Column(name = "EMAIL")
+    @Column(name = "EMAIL")
     @ApiModelProperty
     private String email;
 

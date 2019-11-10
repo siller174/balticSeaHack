@@ -22,8 +22,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addUser(@RequestBody User user) {
+    public void addUser(@RequestBody User user) {
         userRepo.addUser(user);
-        return "redirect:/";
     }
 }
