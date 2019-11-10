@@ -61,15 +61,11 @@ public class EventController {
     }
 
     @RequestMapping(value = "/checkIn/{eventId}", method = RequestMethod.POST)
-    public RedirectView checkIn(@PathVariable("eventId") Long eventId,
+    public String checkIn(@PathVariable("eventId") Long eventId,
                                 @RequestBody User user) {
 
         //todo add checin user
-
-
-        RedirectView redirectView = new RedirectView();
-        redirectView.setUrl(eventRepo.findById(eventId).getRedirectUrl());
-        return redirectView;
+        return eventRepo.findById(eventId).getRedirectUrl();
     }
 
     @ResponseBody
