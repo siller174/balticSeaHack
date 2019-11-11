@@ -43,7 +43,7 @@ public class EventController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public void addEvent(@RequestBody Event event) throws IOException {
+    public void addEvent(@RequestBody Event event) {
         eventRepo.addEvent(event);
     }
 
